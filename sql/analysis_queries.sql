@@ -1,42 +1,42 @@
-Data Exploration: 
+--Data Exploration: 
 SELECT COUNT(*) FROM sales;
-1. Total Sales
+--1. Total Sales
 SELECT SUM(weekly_sales) AS total_sales FROM sales;
-2. Sales by Store
+--2. Sales by Store
 SELECT store, SUM(weekly_sales) AS total_sales
 FROM sales
 GROUP BY store
 ORDER BY total_sales DESC;
-3. Monthly Sales Trend
+--3. Monthly Sales Trend
 SELECT 
     DATE_FORMAT(date, '%Y-%m') AS month,
     SUM(weekly_sales) AS total_sales
 FROM sales
 GROUP BY month
 ORDER BY month;
-4. Holiday vs Non-Holiday Sales
+--4. Holiday vs Non-Holiday Sales
 SELECT 
     holiday_flag,
     SUM(weekly_sales) AS total_sales
 FROM sales
 GROUP BY holiday_flag;
 
- (0 = normal, 1 = holiday)
+ --(0 = normal, 1 = holiday)
 
-5. Top 5 Performing Stores
+--5. Top 5 Performing Stores
 SELECT store, SUM(weekly_sales) AS revenue
 FROM sales
 GROUP BY store
 ORDER BY revenue DESC
 LIMIT 5;
-6. Impact of Temperature
+--6. Impact of Temperature
 SELECT 
     ROUND(temperature) AS temp_range,
     AVG(weekly_sales) AS avg_sales
 FROM sales
 GROUP BY temp_range
 ORDER BY temp_range;
-7. Impact of Fuel Price
+--7. Impact of Fuel Price
 SELECT 
     ROUND(fuel_price,1) AS fuel_range,
     AVG(weekly_sales) AS avg_sales
